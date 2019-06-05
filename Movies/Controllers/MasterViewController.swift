@@ -23,15 +23,16 @@ class MasterViewController: UIViewController {
                 if let searchResult = repo.search(by: year) , searchResult.count > 0 {
                     noResult = false
                     self.showMovies = searchResult
-                }else{
-                    self.showMovies = allMovies
                 }
             }
-            if noResult {
+            if noResult && sender.text!.count > 0 {
                 let alertController = UIAlertController(title: "No Movies are matched", message: "please search with a valid movie year", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "Ok", style: .default)
                 alertController.addAction(okAction)
                 self.present(alertController,animated: true)
+            }
+            if noResult{
+                self.showMovies = allMovies
             }
             self.tableView.reloadData()
         })
@@ -61,7 +62,8 @@ class MasterViewController: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-            
+            let details = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+            details.currentMovie = showMovies[tableView.indexPathForSelectedRow!.row]
         }
     }
     
