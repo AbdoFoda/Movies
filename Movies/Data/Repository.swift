@@ -9,8 +9,11 @@
 import Foundation
 
 class Repository {
+    // MARK:- Variables
     private static var singleInstance : Repository?
-
+    private var allMovies : MovieList?
+    
+    // MARK:- Functions
     static func getInstance(completion : @escaping (Repository)->Void )  {
         if singleInstance == nil {
             DispatchQueue.global().sync {
@@ -23,15 +26,19 @@ class Repository {
     }
     
     func getAllMovies() -> [Movie]? {
-        let path = Bundle.main.path(forResource: "movies.json", ofType: nil)!
-        let url = URL(fileURLWithPath: path)
-        do {
-            let jsonData = try NSData(contentsOf: url, options: NSData.ReadingOptions())
-            let movieList = try JSONDecoder().decode(MovieList.self, from: jsonData as Data)
-            return movieList.movies
-        } catch {
-            print("couldn't load the file")
-            return nil
+        if allMovies == nil {
+            let path = Bundle.main.path(forResource: "movies.json", ofType: nil)!
+            let url = URL(fileURLWithPath: path)
+            do {
+                let jsonData = try NSData(contentsOf: url, options: NSData.ReadingOptions())
+                allMovies = try JSONDecoder().decode(MovieList.self, from: jsonData as Data)
+                return allMovies!.movies
+            } catch {
+                print("couldn't load the file")
+                return nil
+            }
+        }else{
+            return allMovies?.movies
         }
     }
     

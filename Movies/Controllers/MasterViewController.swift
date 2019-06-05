@@ -11,12 +11,14 @@ import UIKit
 class MasterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    private var showMovies : [Movie]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        Repository.getInstance(completion: { (repo) in
+            self.showMovies = repo.getAllMovies()
+        })
+    
     }
 
    
@@ -29,7 +31,8 @@ class MasterViewController: UIViewController {
             
         }
     }
-
+    
+    
 
    
 }
