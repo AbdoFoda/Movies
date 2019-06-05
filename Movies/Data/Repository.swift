@@ -9,11 +9,18 @@
 import Foundation
 
 class Repository {
-    private lazy var singleInstance : Repository = {
-        return Repository()
-    }()
+    private var singleInstance : Repository?
 
-    
+    func getInstance(completion : @escaping (Repository)->Void )  {
+        if singleInstance == nil {
+            DispatchQueue.global().sync {
+                self.singleInstance = Repository()
+                completion(self.singleInstance!)
+            }
+        }else{
+            completion(singleInstance!)
+        }
+    }
     
     
     
