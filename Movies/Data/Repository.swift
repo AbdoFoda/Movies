@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class Repository {
+    private lazy var singleInstance : Repository = {
+        return Repository()
+    }()
+
+    
+    
+    
+    
+}

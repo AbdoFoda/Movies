@@ -9,12 +9,12 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
-//   let movie = try? newJSONDecoder().decode(Movie.self, from: jsonData)
+//   let movie = try? newJSONDecoder().decode(MovieList.self, from: jsonData)
 
 import Foundation
 
 // MARK: - Movie
-struct Movie: Codable {
+struct MovieList: Codable {
     let movies: [MovieElement]
 }
 
