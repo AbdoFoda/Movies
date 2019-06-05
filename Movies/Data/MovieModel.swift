@@ -15,11 +15,11 @@ import Foundation
 
 // MARK: - Movie
 struct MovieList: Codable {
-    let movies: [MovieElement]
+    let movies: [Movie]
 }
 
 // MARK: - MovieElement
-struct MovieElement: Codable {
+struct Movie: Codable {
     let title: String
     let year: Int
     let cast: [String]
