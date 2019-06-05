@@ -15,7 +15,7 @@ import Foundation
 
 // MARK: - Movie
 struct MovieList: Codable {
-    let movies: [Movie]
+    var movies: [Movie]
 }
 
 // MARK: - MovieElement

@@ -1,0 +1,103 @@
+{
+    "movies": [
+        {
+            "title": "(500) Days of Summer",
+            "year": 2009,
+            "cast": [
+                "Joseph Gordon-Levitt",
+                "Zooey Deschanel"
+            ],
+            "genres": [
+                "Romance",
+                "Comedy"
+            ],
+            "rating": 3
+        },
+        {
+            "title": "12 Rounds",
+            "year": 2009,
+            "cast": [
+                "John Cena",
+                "Ashley Scott",
+                "Steve Harris",
+                "Aidan Gillen",
+                "Brian J. White",
+                "Taylor Cole"
+            ],
+            "genres": [
+                "Action"
+            ],
+            "rating": 4
+        },
+        {
+            "title": "17 Again",
+            "year": 2009,
+            "cast": [
+                "Zac Efron",
+                "Leslie Mann",
+                "Thomas Lennon",
+                "Matthew Perry",
+                "Melora Hardin",
+                "Michelle Trachtenberg",
+                "Sterling Knight"
+            ],
+            "genres": [
+                "Comedy",
+                "Teen"
+            ],
+            "rating": 5
+        },
+        {
+            "title": "2012",
+            "year": 2009,
+            "cast": [
+                "John Cusack",
+                "Amanda Peet",
+                "Danny Glover",
+                "Thandie Newton",
+                "Oliver Platt",
+                "Chiwetel Ejiofor",
+                "Woody Harrelson"
+            ],
+            "genres": [
+                "Disaster"
+            ],
+            "rating": 2
+        },
+        {
+            "title": "9",
+            "year": 2009,
+            "cast": [
+                "Elijah Wood",
+                "John C. Reilly",
+                "Jennifer Connelly",
+                "Christopher Plummer",
+                "Crispin Glover",
+                "Martin Landau"
+            ],
+            "genres": [
+                "Animated"
+            ],
+            "rating": 2
+        },
+        {
+            "title": "Adam",
+            "year": 2010,
+            "cast": [
+                "Hugh Dancy",
+                "Rose Byrne",
+                "Peter Gallagher",
+                "Amy Irving",
+                "Frankie Faison",
+                "Mark Linn-Baker",
+                "Karina Arroyave"
+            ],
+            "genres": [
+                "Comedy",
+                "Drama"
+            ],
+            "rating": 5
+        }
+
+   ]
+}

@@ -10,13 +10,46 @@ import UIKit
 
 class MasterViewController: UIViewController {
 
+    // MARK:- Outlets
+    
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBAction func showSearchResult(_ sender: UITextField) {
+        Repository.getInstance(completion: { (repo) in
+            var noResult = true
+            let allMovies = repo.getAllMovies(location: .develop)
+            // here we are using clasure, So it may be delayed...just refresh the table view
+            if let year = Int(sender.text!) {
+                if let searchResult = repo.search(by: year) , searchResult.count > 0 {
+                    noResult = false
+                    self.showMovies = searchResult
+                }else{
+                    self.showMovies = allMovies
+                }
+            }
+            if noResult {
+                let alertController = UIAlertController(title: "No Movies are matched", message: "please search with a valid movie year", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .default)
+                alertController.addAction(okAction)
+                self.present(alertController,animated: true)
+            }
+            self.tableView.reloadData()
+        })
+    }
+    
+    // MARK:- Variables
+    
     private var showMovies : [Movie]!
+    
+    
+    // MARK:- Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Repository.getInstance(completion: { (repo) in
-            self.showMovies = repo.getAllMovies()
+            self.showMovies = repo.getAllMovies(location: .develop)
+            // here we are using clasure, So it may be delayed...just refresh the table view
+            self.tableView.reloadData()
         })
     
     }
@@ -41,16 +74,24 @@ class MasterViewController: UIViewController {
 
 extension MasterViewController : UITableViewDataSource , UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.showMovies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell")!
-        cell.textLabel?.text = "Movie Name"
-        cell.detailTextLabel?.text = "Movie Year"
+        cell.textLabel?.text = self.showMovies[indexPath.row].title
+        cell.detailTextLabel?.text = "Rating : \(showMovies[indexPath.row].rating) out of 5 , Year :\(self.showMovies[indexPath.row].year)"
         return cell
         
     }
     
     
+}
+
+
+extension MasterViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
 }
